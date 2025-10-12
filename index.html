@@ -3,71 +3,145 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anime & 3D Art Gallery</title>
+  <title>Laugh Lounge</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #1e1e2f;
-      color: #f0f0f0;
-      margin: 0;
-      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #fffaf0;
+      color:darkseagreen;
+      margin: 200x;
+      padding: 40px;
     }
+
     header {
-      background-color: #2c2c3c;
-      padding: 20px;
+      background-color:rgb(45, 88, 88);
       text-align: center;
+      padding: 2rem;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
+
+    .hero {
+      text-align: center;
+      padding: 1rem;
     }
-    section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .gallery img {
-      width: 100%;
+
+    .hero img {
+      width: 80%;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     }
-    .paragraph {
-      margin-bottom: 30px;
-      line-height: 1.6;
+
+    .poems {
+      background-color: #f0f8ff;
+      padding: 2rem;
     }
-    footer {
-      background-color: #2c2c3c;
+
+    .poem-card {
+      background-color: #c5d8dd;
+      border: 2px dashed #ff69b4;
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 600px;
+    }
+
+    .gallery {
+      padding: 2rem;
       text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
     }
+
+    .images img {
+      width: 200px;
+      margin: 10px;
+      border-radius: 8px;
+    }
+
+    footer {
+      background-color: #ffffff;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    #di{position:relative;
+    top:23px;
+    left: -403px;
+}
+#duck{position: relative;
+top:-210px;
+left:200px;
+font-size:large; width:660px;
+color: rosybrown;
+}
   </style>
 </head>
 <body>
   <header>
-    <h1>Anime & 3D Art Showcase</h1>
+    <h1>Laugh Lounge</h1>
+    <p>Your daily dose of giggles and good vibes</p>
   </header>
 
-  <section>
-    <div class="paragraph">
-      <p>Welcome to my digital gallery! This site features a curated selection of anime illustrations and 3D digital art. Each piece reflects a unique blend of emotion, imagination, and technical mastery.</p>
+  <section class="hero">
+    <img src="https://cdn.vectorstock.com/i/500p/74/59/dabbing-christmas-cartoon-characters-funny-banner-vector-22947459.jpg" alt="Funny cartoon banner" />
+    <h2>Welcome to the world of chuckles</h2>
+  </section>
+
+  <section class="poems">
+    <h2>wuthering</h2>
+
+    <div class="poem-card">
+      <h3>The Lazy Cat</h3>
+      <p style="color: rgb(92, 23, 23);">
+        I had a cat, so round and fat,<br />
+        He slept all day upon my mat.<br />
+        He dreamed of fish and flying mice,<br />
+        But woke up just to eat some rice.
+      </p>
     </div>
 
-    <div class="gallery">
-      <img src="https://example.com/anime1.jpg" alt="Anime Art 1" />
-      <img src="https://example.com/anime2.jpg" alt="Anime Art 2" />
-      <img src="https://example.com/3d1.jpg" alt="3D Art 1" />
-      <img src="https://example.com/3d2.jpg" alt="3D Art 2" />
+    <div class="poem-card">
+      <h3>Toothpaste Tango</h3>
+      <p style="color:blue ">
+        I squeezed the tube with all my might,<br />
+        It shot across the room in flight!<br />
+        It hit the wall, then hit my shoe—<br />
+        Now minty fresh from heel to toe too!
+      </p>
+    </div>
+
+    <div class="poem-card">
+      <h3>Wi-Fi Woes</h3>
+      <p style="color: rgb(34, 54, 14);">
+        My Wi-Fi died, I screamed in fear,<br />
+        “How will I scroll or stream or cheer?”<br />
+        I stared at walls, I paced the floor—<br />
+        Then read a book... what a bore!
+      </p>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2><u>Laugh Gallery</u></h2>
+    <div class="images">
+      <img id="di" src="https://i.pinimg.com/originals/8c/2b/7c/8c2b7cd3af71c5f2c9a0e8d14a083b63.jpg" alt="Funny meme 1" />
+      <p id="duck"> Glides through silence like dusk on a lake,
+Ripples form, but none retrace the wake.
+Temper flares like wings mid-flight,
+A sudden blaze in the calm of night.
+“Mujhe kya, mai to batak hu,”
+A whisper lost in twilight hue.
+Sleeps deep, where dreams don’t speak,
+Wanders far, yet never seeks.
+Drawn to pages inked in shade,
+Stories dark, where truths evade.
+Words strike sharp, then fade away,
+Like feathers shed at break of day.
+No map, no anchor, no clear form,
+Just motion wrapped inside a storm.
+Not loud, not soft—just undefined,
+A riddle drifting through the mind.
+</p>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 Megatron's Gallery. All rights reserved.
+    <p style="color: aqua;">© 2025 Laugh Lounge | Made with Divyansh  </p>
   </footer>
 </body>
 </html>
