@@ -1,200 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laugh Lounge</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laugh Lounge — Upgraded</title>
+  <meta name="description" content="Laugh Lounge — a small collection of poems, jokes, cartoons and a bright gallery to lift your mood." />
   <style>
-    body {
-      font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background-color :rgb(159, 232, 232);
-      color: darkseagreen;
-      margin: 0;
-      padding: 20px;
-      overflow-x: hidden;
+    :root{
+      --bg: #f6fbfb;
+      --card: #fff;
+      --muted: #4b5563;
+      --accent: #6f42c1;
+      --accent-2: #7bd8d8;
+      --accent-3: #f6a5c0;
+      --header: #2d5858;
+      --max-width: 1200px;
+      --radius: 12px;
+      --glass: rgba(255,255,255,0.6);
     }
 
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
+    /* base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg), #eaf7f7);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.45;
+      padding:20px;
+      display:flex;
+      justify-content:center;
     }
 
-    header {
-      background-color: rgb(45, 88, 88);
-      text-align: center;
-      padding: 2rem;
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.95));
+      border-radius:18px;
+      box-shadow:0 8px 30px rgba(15,23,42,0.08);
+      overflow:hidden;
     }
 
-    .hero {
-      text-align: center;
+    /* header + nav */
+    header.site-header{
+      background: linear-gradient(90deg,var(--header), #234343);
+      color: #eef7f7;
+      padding:1.2rem 1.4rem;
+      display:flex;
+      align-items:center;
+      gap:1rem;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    header .brand{
+      display:flex;
+      gap:0.75rem;
+      align-items:center;
+    }
+    .logo{
+      width:56px;height:56px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent), var(--accent-2));
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+      flex:0 0 56px;
+      font-size:20px;
+    }
+    nav.main-nav{
+      display:flex;
+      gap:0.5rem;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    nav a{
+      color:inherit;text-decoration:none;padding:0.45rem 0.8rem;border-radius:10px;
+      background:transparent;font-weight:600;font-size:0.95rem;
+    }
+    nav a:hover, nav a:focus{
+      background: rgba(255,255,255,0.08);
+      outline:none;
+    }
+
+    /* hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:1.2rem;
+      align-items:center;
+      padding:1.6rem;
+    }
+    .hero .intro{
+      padding:1rem 1.2rem;
+    }
+    .title{
+      margin:0 0 .5rem 0;
+      font-size:clamp(1.6rem, 3.2vw, 2.6rem);
+      color: #0b3b3b;
+    }
+    .lead{margin:0 0 1rem 0;color:#234;}
+    .cta-row{display:flex;gap:.6rem;flex-wrap:wrap}
+    .btn{
+      display:inline-block;padding:.7rem 1rem;border-radius:10px;
+      text-decoration:none;color:white;font-weight:700;
+      background:var(--accent);
+      box-shadow:0 6px 14px rgba(111,66,193,0.12);
+    }
+    .btn.secondary{
+      background:var(--accent-2); color:#033; font-weight:700;
+      box-shadow:none;
+    }
+
+    .hero-visual{
+      background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
       padding: 1rem;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:180px;
+    }
+    .hero-visual img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      border-radius:10px;
+      display:block;
+      border: 6px solid rgba(255,255,255,0.6);
     }
 
-    .hero img {
-      width: 80%;
-      border-radius: 10px;
+    main{
+      padding:1rem 1.4rem 2rem 1.4rem;
     }
-
-    .poems {
-      background-color:bisque;
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:1rem;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
       padding:1rem;
+      box-shadow:0 6px 18px rgba(12,20,28,0.05);
+      min-height:120px;
+    }
+    .card h3{margin:0 0 .45rem 0;font-size:1.05rem;color:#183a3a}
+    .muted{color: #5b6b73;font-size:0.95rem}
+
+    /* details (no-JS accordion) */
+    details{background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 8px 20px rgba(10,20,30,0.04)}
+    summary{font-weight:700;cursor:pointer;outline:none}
+    details[open] summary::after{content:" ▲";float:right}
+    summary::after{content:" ▼";float:right}
+
+    /* gallery */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:0.6rem;
+    }
+    .figure{
+      border-radius:12px;
+      overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .figure img{width:100%;height:160px;object-fit:cover;display:block}
+    .figure:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(16,24,40,0.08)}
+
+    /* contact */
+    form.contact{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:.6rem;
+      align-items:start;
+    }
+    input, textarea, button{
+      width:100%;padding:.6rem;border-radius:10px;border:1px solid #d7e9e9;font-size:0.95rem;
+    }
+    textarea{min-height:120px;resize:vertical}
+    button[type="submit"]{background:var(--accent);color:white;border:none;padding:.75rem;font-weight:700;cursor:pointer}
+
+    footer{
+      padding:1rem 1.4rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+      border-top:1px solid rgba(0,0,0,0.04);
     }
 
-    .poem-card {
-      background-color: #c5d8dd;
-      border: 2px dashed #ff69b4;
-      padding: 1rem;
-      margin: 1rem auto;
-      max-width: 600px;
+    /* responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr 1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .gallery-grid{grid-template-columns:repeat(3,1fr)}
+      form.contact{grid-template-columns:1fr}
+    }
+    @media (max-width:680px){
+      .hero{grid-template-columns:1fr}
+      .hero-visual img{height:180px}
+      .grid{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:repeat(2,1fr)}
+      nav.main-nav{width:100%;justify-content:flex-end}
+      header.site-header{gap:.6rem}
+      .logo{width:48px;height:48px;font-size:18px}
     }
 
-    .gallery { background-color:rgb(133, 170, 238);
-      padding: 2rem;
-      text-align: center;
+    /* accessibility focus */
+    a:focus, button:focus, input:focus, textarea:focus, summary:focus{
+      outline:3px solid rgba(111,66,193,0.25);
+      outline-offset:2px;
     }
-
-    .duck-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .duck-wrapper img {
-      width: 200px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    .duck-wrapper p {
-      max-width: 400px;
-      font-size: small;
-      color: rgb(39, 42, 44);
-    }
-
-    footer {
-      background-color: #ffffff;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 10px;
-        font-size: 16px;
-      }}
-
-      .hero img {
-        width: 100%;
-      }
-
-      .duck-wrapper img {
-      width:90%;
-      }
-
-      .duck-wrapper p {
-        width: 90%;
-        font-size: 14px;
-      }
-      .h2 {
-        position:relative; left:-20px;
-        
-        width:100%;
-        box-sizing: border-box;
-        border: 6px solid palevioletred;
-        padding: .9rem;
-        background: rgba(120, 93, 218, 0.6);
-        border-radius: 80px;
-        margin: 0 0 1rem 1rem;
-        text-align:lefts;
-      }
-      #gul{border:9px solid rgba(172, 124, 244, 0.489) ;box-sizing:content-box; padding:.1rem;
-        background: palegreen;
-        border-radius: 70px;
-        margin: 0 0 1rem 1rem;
-        
-    }
-    
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Laugh Lounge</h1>
-      <p>A dose of giggles and good vibes</p>
+  <div class="container" role="document">
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">LL</div>
+        <div>
+          <div style="font-weight:800">Laugh Lounge</div>
+          <div style="font-size:.85rem;opacity:.95">A small corner for poems, jokes & smiles</div>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#hero">Home</a>
+        <a href="#poems">Poems</a>
+        <a href="#jokes">Jokes</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
-    <section class="hero">
-      <img src="https://cdn.vectorstock.com/i/500p/74/59/dabbing-christmas-cartoon-characters-funny-banner-vector-22947459.jpg" alt="Funny cartoon banner">
-      <h2 class="h2">Welcome to the world of chuckles</h2>
-    </section>
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+      <div class="intro">
+        <h1 id="hero-title" class="title">Welcome to the world of chuckles</h1>
+        <p class="lead">Short poems, silly jokes, cozy cartoons and a bright gallery to lift your day. No scripts, just good vibes.</p>
 
-    <section class="poems">
-      <h2><u>Wuthering</u></h2>
-
-      <div class="poem-card">
-        <h3>The Lazy Cat</h3>
-        <p style="color:rgb(92, 23, 23)">
-          I had a cat, so round and fat,<br />
-          He slept all day upon my mat.<br />
-          He dreamed of fish and flying mice,<br />
-          But woke up just to eat some rice.
-        </p>
+        <div class="cta-row" role="group" aria-label="Primary actions">
+          <a class="btn" href="Untitled-1.html">Read Poems</a>
+          <a class="btn secondary" href="Untitled-2.html">Read Humor</a>
+          <a class="btn" href="#gallery" style="background:var(--accent-3);color:#3a063a">View Gallery</a>
+        </div>
       </div>
 
-      <div class="poem-card">
-        <h3>Toothpaste Tango</h3>
-        <p style="color: blue;">
-          I squeezed the tube with all my might,<br />
-          It shot across the room in flight!<br />
-          It hit the wall, then hit my shoe—<br />
-          Now minty fresh from heel to toe too!
-        </p>
-      </div>
-
-      <div class="poem-card">
-        <h3>Wi-Fi Woes</h3>
-        <p style="color: rgb(34, 54, 14);">
-          My Wi-Fi died, I screamed in fear,<br />
-          “How will I scroll or stream or cheer?”<br />
-          I stared at walls, I paced the floor—<br />
-          Then read a book... what a bore!
-        </p>
-      </div>
-    </section>
-    <hr style="border:0;height:0;margin:3rem 0;background:transparent;border-top:8px double rgba(172,124,244,0.6);border-radius:4px;">
-
-    <section class="gallery">
-      <h2><u>Laugh Gallery</u></h2>
-      <div class="duck-wrapper">
-        <img src="https://i.redd.it/tzhfnjdllku61.jpg" alt="Funny meme 1">
-        <p id="gul">
-          Gul gula moods in a candy swirl,<br>
-Soft as sighs from a sleepy girl.<br>
-Eyes that spark with sugar and flame,<br>
-Angry blush, but never blame.<br>
-Stamping feet in tiny rage,<br>
-A stormlet trapped inside a cage.<br>
-Yet giggles bloom like springtime rain,<br>
-Cuteness dancing through the pain.<br>
-“Mujhe kya,” she pouts, then grins,<br>
-A rebel wrapped in velvet sins.<br>
-Gul gula thoughts, wild and free,<br>
-A riddle wrapped in poetry.<br>
-
-        </p>
+      <div class="hero-visual" aria-hidden="false">
+        <img src="https://picsum.photos/id/1025/900/600" alt="Cartoon-style cheerful characters banner" />
       </div>
     </section>
 
-    <footer>
-      <p style="color: rgb(29, 31, 31);">© 2025 Laugh Lounge | Made by <b>Human</b></p>
+    <main>
+      <!-- Poems -->
+      <section id="poems" aria-labelledby="poems-title" style="margin-bottom:1rem">
+        <h2 id="poems-title" style="margin:.2rem 0 0.8rem 0;color:var(--accent)">Featured Poem — "Wuthering"</h2>
+        <div class="grid" style="align-items:start">
+          <article class="card" aria-labelledby="poem-1">
+            <h3 id="poem-1">Wuthering — Excerpt</h3>
+            <p class="muted">A light-hearted fragment inspired by stormy windows and warm tea. <em>Soft winds, louder laughter — we measure storms in smiles.</em></p>
+            <p style="margin-top:.6rem;color:#234">"The sky argues with the sea, but our kettle sings; bring the socks and stories, close the door to gloom."</p>
+          </article>
+
+          <article class="card" aria-labelledby="poem-2">
+            <h3 id="poem-2">More from the lounge</h3>
+            <p class="muted">Short poem cards and small lines you can share. Visit the full poem collection to read more.</p>
+            <p style="margin-top:.6rem;"><a href="Untitled-1.html" class="btn" style="display:inline-block">Open Poems</a></p>
+          </article>
+
+          <aside class="card" aria-labelledby="poem-fun">
+            <h3 id="poem-fun">Poem & Art Pairing</h3>
+            <p class="muted">Each poem pairs with a small, cheerful image to brighten reading. No autoplay media — safe and calm.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Jokes using details (no-js accordion) -->
+      <section id="jokes" aria-labelledby="jokes-title" style="margin:1.2rem 0">
+        <h2 id="jokes-title" style="color:var(--accent)">Top Chuckles (open to reveal)</h2>
+        <div style="display:grid;gap:.8rem">
+          <details>
+            <summary>Why did the computer sneeze?</summary>
+            <p class="muted">It had a bad case of "byte"-s! — Short, silly, guaranteed to be minimal damage to your dignity.</p>
+          </details>
+
+          <details>
+            <summary>Short one-liner</summary>
+            <p class="muted">I told a joke about a roof — it went over everyone's head.</p>
+          </details>
+
+          <details>
+            <summary>Non sequitur</summary>
+            <p class="muted">If laughter is the best medicine, consider this website an over-the-counter smile.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section id="gallery" aria-labelledby="gallery-title" style="margin:1.2rem 0">
+        <h2 id="gallery-title" style="color:var(--accent)">Laugh Gallery</h2>
+        <p class="muted" style="margin-top:0">A small selection of images and cartoons to brighten the view. Click to open the source image in a new tab.</p>
+
+        <div class="gallery-grid" style="margin-top:.8rem">
+          <figure class="figure"><a href="https://th.bing.com/th/id/R.0e778906266cd195ee8b08dbc0adedc6?rik=ugwUxhO%2fTJnixg&riu=http%3a%2f%2fwww.lolwot.com%2fwp-content%2fuploads%2f2015%2f07%2f20-hilarious-animal-memes-that-will-make-you-lol-2.jpg&ehk=cxbrmhPbMv%2bAtLyiVUYfpWhw5nrHCzb6%2bdWYK%2b0wOO4%3d&risl=&pid=ImgRaw&r=0" target="_blank" rel="noopener noreferrer"><img src="https://th.bing.com/th/id/R.0e778906266cd195ee8b08dbc0adedc6?rik=ugwUxhO%2fTJnixg&riu=http%3a%2f%2fwww.lolwot.com%2fwp-content%2fuploads%2f2015%2f07%2f20-hilarious-animal-memes-that-will-make-you-lol-2.jpg&ehk=cxbrmhPbMv%2bAtLyiVUYfpWhw5nrHCzb6%2bdWYK%2b0wOO4%3d&risl=&pid=ImgRaw&r=0" alt="Laugh gallery image 1 — playful dog" /></a></figure>
+          <figure class="figure"><a href="https://www.liveabout.com/thmb/_5FznBsNRaVeMFT2wQR--6MT1xs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/top-memes-of-all-time-3485903-F-v1-5b16fd843128340036621141.JPG" target="_blank" rel="noopener noreferrer"><img src="https://www.liveabout.com/thmb/_5FznBsNRaVeMFT2wQR--6MT1xs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/top-memes-of-all-time-3485903-F-v1-5b16fd843128340036621141.JPG" alt="Laugh gallery image 2 — smiling faces illustration" /></a></figure>
+          <figure class="figure"><a href="https://www.boredpanda.com/blog/wp-content/uploads/2022/09/relatable-funny-memes-30-632854d5bb609__700.jpg" target="_blank" rel="noopener noreferrer"><img src="https://www.boredpanda.com/blog/wp-content/uploads/2022/09/relatable-funny-memes-30-632854d5bb609__700.jpg" alt="Laugh gallery image 3 — colorful pattern" /></a></figure>
+          <figure class="figure"><a href="https://klyker.com/wp-content/uploads/2021/02/funny-memes-pics-25.jpg" target="_blank" rel="noopener noreferrer"><img src="https://klyker.com/wp-content/uploads/2021/02/funny-memes-pics-25.jpg" alt="Laugh gallery image 4 — cartoon character" /></a></figure>
+          <figure class="figure"><a href="https://klyker.com/wp-content/uploads/2023/01/funny-pics-memes-2-1.jpg" target="_blank" rel="noopener noreferrer"><img src="https://klyker.com/wp-content/uploads/2023/01/funny-pics-memes-2-1.jpg" alt="Laugh gallery image 5 — cheerful scene" /></a></figure>
+          <figure class="figure"><a href="https://klyker.com/wp-content/uploads/2021/05/funny-pics-memes-20.jpg" target="_blank" rel="noopener noreferrer"><img src="https://klyker.com/wp-content/uploads/2021/05/funny-pics-memes-20.jpg" alt="Laugh gallery image 6 — simple illustration" /></a></figure>
+          <figure class="figure"><a href="https://wallpapers.com/images/hd/memes-pics-funny-pictures-9p33wx6yvsmknlza.jpg" target="_blank" rel="noopener noreferrer"><img src="https://wallpapers.com/images/hd/memes-pics-funny-pictures-9p33wx6yvsmknlza.jpg" alt="Laugh gallery image 7 — fun face" /></a></figure>
+          <figure class="figure"><a href="https://tse2.mm.bing.net/th/id/OIP.siMkhM4Md1VJdBo88Z0ZxQHaJa?w=564&h=717&rs=1&pid=ImgDetMain&o=7&rm=3" target="_blank" rel="noopener noreferrer"><img src="https://tse2.mm.bing.net/th/id/OIP.siMkhM4Md1VJdBo88Z0ZxQHaJa?w=564&h=717&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Laugh gallery image 8 — kids laughing" /></a></figure>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" aria-labelledby="contact-title" style="margin:1.2rem 0 0">
+        <h2 id="contact-title" style="color:var(--accent)">Contact & Share</h2>
+        <p class="muted">Send a quick note or a suggestion. This form does not use client-side scripts. Use an email address if you want a reply.</p>
+
+        <form class="contact" method="post" action="mailto:example@example.com" enctype="text/plain" aria-label="Contact form">
+          <input type="text" name="name" placeholder="Your name" aria-label="Your name" required />
+          <input type="email" name="email" placeholder="Email (optional)" aria-label="Email" />
+          <textarea name="message" placeholder="Your message" aria-label="Message" required></textarea>
+          <div style="display:flex;gap:.6rem;align-items:center">
+            <button type="submit">Send</button>
+            <button type="reset" style="background:#e6e7ea;color:#1f2933;border:none;padding:.6rem;border-radius:10px">Reset</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <div style="font-size:.95rem;color:#0f3030">© 2025 Laugh Lounge — Made by <strong>Human</strong></div>
+      <div style="display:flex;gap:.6rem;align-items:center">
+        <a href="#" style="text-decoration:none;color:var(--muted)">Privacy</a>
+        <a href="#" style="text-decoration:none;color:var(--muted)">Terms</a>
+        <span style="color:var(--muted)">—</span>
+        <span style="font-size:1.1rem" aria-hidden="true">🙂 🎭 ☕</span>
+      </div>
     </footer>
   </div>
 </body>
-</html>
-
-
+</html></div></aside>

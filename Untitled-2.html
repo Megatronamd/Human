@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="theme-color" content="#9ad7e8">
+    <title>Wuthering Poems</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --bg:#c9a375;
+            --card:#9ad7e8;
+            --accent:#eb80b5;
+            --text:#222;
+            --muted:#4a4a4a;
+            --glass: rgba(255,255,255,0.35);
+        }
+        [data-theme="dark"]{
+            --bg:#0f1720;
+            --card:#0b3340;
+            --accent:#ff8bd6;
+            --text:#e6eef6;
+            --muted:#a7b6c2;
+            --glass: rgba(255,255,255,0.04);
+        }
+
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg,var(--bg), #e8d3b8 60%);
+            color:var(--text);
+            -webkit-font-smoothing:antialiased;
+            padding:1.5rem;
+            display:flex;
+            flex-direction:column;
+            gap:1rem;
+            align-items:center;
+        }
+
+        .site{
+            width:100%;
+            max-width:1100px;
+        }
+
+        header{
+            display:flex;
+            gap:1rem;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:.5rem;
+        }
+
+        .brand{
+            display:flex;
+            gap:.75rem;
+            align-items:center;
+        }
+        .logo{
+            width:56px;
+            height:56px;
+            display:inline-grid;
+            place-items:center;
+            background:var(--card);
+            color:var(--text);
+            border:3px dashed var(--accent);
+            border-radius:12px;
+            font-weight:700;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+        h1{
+            margin:0;
+            font-size:1.6rem;
+            letter-spacing:0.6px;
+            color: darkslateblue;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.12);
+        }
+        
+        
+        .btn{
+            background:var(--card);
+            border:2px dashed var(--accent);
+            padding:.45rem .6rem;
+            border-radius:10px;
+            cursor:pointer;
+            font-weight:600;
+            color:var(--text);
+            display:inline-flex;
+            gap:.5rem;
+            align-items:center;
+        }
+
+        main{
+            display:block;
+        }
+
+        .grid{
+            display:grid;
+            gap:1rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            align-items:start;
+        }
+
+        .poem-card{
+            background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.02));
+            border-radius:12px;
+            padding:1rem 1.1rem;
+            box-shadow: 0 8px 18px rgba(10,10,10,0.08);
+            border:2px dashed var(--accent);
+            transition:transform .18s ease, box-shadow .18s ease;
+            backdrop-filter: blur(6px);
+            color:var(--text);
+            position:relative;
+        }
+        .poem-card:hover{
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 18px 36px rgba(0,0,0,0.12);
+        }
+        .poem-card h3{
+            margin:.15rem 0 .45rem;
+            font-size:1.05rem;
+            line-height:1.2;
+        }
+        .poem-card p{
+            margin:0;
+            color:var(--muted);
+            font-size:.96rem;
+            line-height:1.5;
+        }
+
+        .meta{
+            display:flex;
+            gap:.5rem;
+            margin-top:.6rem;
+            align-items:center;
+            justify-content:space-between;
+            font-size:.85rem;
+            color:var(--muted);
+        }
+
+        footer{
+            margin-top:1rem;
+            text-align:center;
+            font-size:0.85rem;
+            color:var(--muted);
+        }
+
+        /* small accessibility tweaks */
+        .skip-link{
+            position:absolute;
+            left:-9999px;
+            top:auto;
+            width:1px;
+            height:1px;
+            overflow:hidden;
+        }
+        .skip-link:focus{
+            left:1rem;
+            top:1rem;
+            width:auto;
+            height:auto;
+            padding:.5rem .75rem;
+            background:var(--card);
+            border-radius:6px;
+            z-index:1000;
+        }
+
+        @media (max-width:460px){
+            header{flex-direction:column;align-items:flex-start;gap:.6rem}
+            .controls{width:100%;justify-content:space-between}
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#poems">Skip to poems</a>
+
+    <div class="site" role="application" aria-label="Wuthering Poems collection">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden="true">✨</div>
+                <div>
+                    <h1><u>Wuthering</u> — lighthearted laugh</h1>
+                    <div style="font-size:.85rem;color:var(--muted)">A small collection of relatable micro-stories</div>
+                </div>
+            </div>
+
+            
+        </header>
+
+        <main id="poems">
+            <div class="grid" id="grid">
+                
+                <article class="poem-card" data-title="The Overthinking Olympics" aria-label="The Overthinking Olympics">
+                    <h3>The Overthinking Olympics</h3>
+                    <p>Someone once told me, “Don’t overthink it.” 🤔 I wish I could, but my brain treats every minor situation like a full-scale investigation 🔍🕵️‍♀️. Did I sound rude in that text? 😬 Was that laugh too fake? Why did my boss say “We need to talk” instead of “Hey”? By the time I’m done analyzing, I’ve created five alternate timelines 🔁 and three conspiracy theories 🧩 — and I’m emotionally exhausted 😅. Meanwhile, the person I’m worried about has completely forgotten the conversation. I don’t need therapy; I need a pause button for my brain ⏸️🧠.</p>
+                </article>
+
+                <article class="poem-card" data-title="The Monday Curse" aria-label="The Monday Curse">
+                    <h3>The Monday Curse</h3>
+                    <p>Mondays should honestly come with a warning label ⚠️📅. No matter how early I sleep on Sunday, Monday still feels like getting hit by a truck full of responsibilities 🚚😫. My alarm goes off ⏰, and I swear it’s personal — the coffee doesn’t hit ☕️, the Wi‑Fi lags 📶, and somehow every email begins with “As per my last message,” which basically means “Did you even read what I said?” By noon I’m negotiating with myself — “If I survive today, I’ll eat vegetables for dinner” 🥦. Spoiler: I order pizza 🍕 and cry a little 😂.</p>
+                </article>
+
+                <article class="poem-card" data-title="Coffee Before Humanity" aria-label="Coffee Before Humanity">
+                    <h3>Coffee Before Humanity</h3>
+                    <p>I don’t talk to anyone before my morning coffee. Not because I’m rude — but because I’m basically a Windows 98 computer trying to boot up 🖥️💤. If someone asks me a serious question before caffeine, I just blink in buffering mode ⏳😵‍💫. Once, I accidentally replied “I love you” to my boss when he said “Good morning,” simply because I hadn’t had coffee yet 😳☕️. My coworkers know the rule now: don’t approach me until the mug is at least half empty. After that, I’m nice — still tired 😴, but nice 😊.</p>
+                </article>
+
+                <article class="poem-card" data-title="The Online Meeting Disaster" aria-label="The Online Meeting Disaster">
+                    <h3>The Online Meeting Disaster</h3>
+                    <p>There’s always that one moment in an online meeting when your camera freezes at the worst possible angle 📸💻. Everyone else looks professional, and I’m stuck mid-blink, looking like I’m questioning the meaning of life 🤨. Then the audio lags, and I end up saying “Good morning” right when someone else says it too — and we both laugh awkwardly for five minutes 😂😅. Once, I thought I was muted 🔇, said “Finally, this meeting is over,” and immediately heard my boss reply, “Not yet.” I’ve never prayed faster in my life 🙏😬.</p>
+                </article>
+
+                <article class="poem-card" data-title="The Laundry Mystery" aria-label="The Laundry Mystery">
+                    <h3>The Laundry Mystery</h3>
+                    <p>I don’t know where socks go after laundry day, but I’m convinced there’s a secret sock dimension 🧦✨🌌. I put ten pairs in and get nine and a half back. Somewhere out there, a sock is living its best life, free from responsibility, dancing in a dryer paradise 💃🧺. Meanwhile, I have a drawer full of single socks, each waiting for a reunion that will never happen 😭. I’ve started mixing them intentionally — if my socks can’t find love, at least they can have chaos 🎲😉.</p>
+                </article>
+
+                <article class="poem-card" data-title="The Dinner Dilemma" aria-label="The Dinner Dilemma">
+                    <h3>The Dinner Dilemma</h3>
+                    <p>Every night it’s the same question: “What should I eat?” 🍽️ I open the fridge hoping for inspiration, but all I find are condiments and disappointment 🥫😔. I’ll stand there staring like food’s going to magically appear if I believe hard enough ✨. Eventually, I order takeout 🥡, wait 45 minutes ⏱️, and then fall asleep five minutes before it arrives 😴. The next morning, I wake up to a cold burger 🍔 and think, “Maybe this is who I am now — the person who eats leftovers at 7 a.m.” Honestly, it’s a lifestyle 😅.</p>
+                </article>
+
+                <article class="poem-card" data-title="The Backseat GPS" aria-label="The Backseat GPS">
+                    <h3>The Backseat GPS</h3>
+                    <p>Nothing tests a friendship quite like giving directions while someone else drives 🚗🗺️. I’ll say “Turn left,” and they’ll immediately go right ➡️. Then they look at me like I’m the problem. I try to sound calm — “No worries, we can take the scenic route” — but inside, I’m screaming 😱. My favorite is when they ignore the GPS completely, saying, “I know a shortcut,” and that shortcut somehow adds 25 minutes to the trip ⌛🧭. Next time, I’m letting the GPS talk. At least it doesn’t take things personally 🤷‍♂️.</p>
+                </article>
+
+                <article class="poem-card" data-title="The Accidental Call" aria-label="The Accidental Call">
+                    <h3>The Accidental Call</h3>
+                    <p>There’s no horror quite like realizing you’ve accidentally called someone 📱😰. You’re just scrolling through your phone, and suddenly you hear it ringing 📲. Panic sets in — do you hang up? Do you wait? If they answer, what do you even say? “Oh hey, sorry, I pressed your face by mistake”? 😬 I once accidentally called my boss at 11 p.m. — I didn’t even breathe until he texted, “Everything okay?” No sir, nothing’s okay. My thumbs are a danger to society 🫠😳.</p>
+                </article>
+
+                <article class="poem-card" data-title="The Modern Love War" aria-label="The Modern Love War">
+                    <h3>The Modern Love War</h3>
+                    <p>Texting in relationships is an Olympic event 🏅💌. You spend 20 minutes crafting the perfect message — cute but not desperate, funny but not too try-hard — then they reply with <b>“hmm.”</b> 😶 Just three letters. I’ve seen Wi‑Fi signals stronger than that energy 📶. Then comes the typing bubble... and it disappears. What were they going to say? Did they delete it? Are they ghosting me 👻 or just busy? By the time they reply again, I’ve imagined 46 different breakup scenarios 💭💔. Texting isn’t communication anymore — it’s emotional dodgeball 🎯.</p>
+                </article>
+            </div>
+        </main>
+
+        <footer>
+           
+        </footer>
+    </div>
+
+    
+</body>
+</html></article>
